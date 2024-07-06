@@ -4,12 +4,7 @@ import { ETaskStatus } from "../../types";
 import { validateTodo } from "../../utils";
 
 import type { TaskFilterStatus, TaskItem } from "../../types";
-
-const mockTodos: TaskItem[] = [
-  { status: ETaskStatus.Completed, title: 'Do tests' },
-  { status: ETaskStatus.Active, title: 'Do test task' },
-  { status: ETaskStatus.Active, title: 'Write beautiful code' },
-]
+import { mockTodos } from "./__mocks__/mock";
 
 const useTodoList = () => {
   const [tasks, setTasks] = useState<TaskItem[]>(mockTodos);
