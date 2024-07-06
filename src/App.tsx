@@ -1,5 +1,12 @@
+import { Flex } from "antd";
+import TodoList from "./components/TodoList";
+
 const App = () => (
-  <h1>Hello, World!</h1>
+    <Flex justify="center" align="center" style={{ height: '100vh' }}>
+      <Flex>
+        <TodoList />
+      </Flex>
+    </Flex>
 );
 
 export default App;
