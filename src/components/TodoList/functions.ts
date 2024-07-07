@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react";
 
+import type { TaskFilterStatus, TaskItem } from "../../types";
 import { ETaskStatus } from "../../types";
 import { validateTodo } from "../../utils";
-
-import type { TaskFilterStatus, TaskItem } from "../../types";
 import { mockTodos } from "./__mocks__/mock";
 
 const useTodoList = () => {
@@ -17,6 +16,8 @@ const useTodoList = () => {
 
     return tasks.filter(({ status }) => status === activeFilter);
   }, [activeFilter, tasks])
+
+  const activeTaskCount = filteredTasks.filter(({ status }) => status === ETaskStatus.Active).length;
 
   const handleAddTodo = (title: string) => {
     const error = validateTodo(title, tasks);
@@ -48,6 +49,7 @@ const useTodoList = () => {
   }
 
   return {
+    activeTaskCount,
     filteredTasks,
     handleAddTodo,
     handleFilterTodos,

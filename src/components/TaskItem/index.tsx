@@ -10,7 +10,7 @@ const Task: FC<TaskProps> = ({ title, status, onChange }) => {
   return (
     <List.Item>
       <Checkbox onChange={() => onChange(title)} checked={isCompleted}>
-        <span style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{title}</span>
+        <span data-testid="list-item" style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{title}</span>
       </Checkbox>
     </List.Item>
   );

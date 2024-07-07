@@ -7,6 +7,7 @@ import useTodoList from "./functions";
 
 const TodoList = () => {
   const {
+    activeTaskCount,
     filteredTasks,
     handleAddTodo,
     handleFilterTodos,
@@ -23,7 +24,7 @@ const TodoList = () => {
       </>}
       footer={
         <TodoListFooter
-          activeTaskCount={filteredTasks.length}
+          activeTaskCount={activeTaskCount}
           onChange={handleFilterTodos}
           onClear={handleRemoveCompletedTodos}
         />

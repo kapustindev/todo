@@ -12,7 +12,7 @@ describe("TodoList main functionality", () => {
 
   it("should render correctly", () => {
     expect(screen.getByText("TODO List")).toBeInTheDocument();
-    expect(screen.getByText("3 items left")).toBeInTheDocument();
+    expect(screen.getByText("2 items left")).toBeInTheDocument();
   });
 
   it("should check the checkbox after clicking on the task", () => {
@@ -29,7 +29,7 @@ describe("TodoList main functionality", () => {
     fireEvent.change(input, { target: { value: "New TODO" } });
     fireEvent.keyDown(input, { key: "Enter", keyCode: 13 });
 
-    expect(screen.getByText("4 items left")).toBeInTheDocument();
+    expect(screen.getByText("3 items left")).toBeInTheDocument();
   })
 
   it("should show an error if input value is empty", () => {
@@ -56,7 +56,7 @@ describe("TodoList main functionality", () => {
 
     fireEvent.click(completedBtn);
 
-    expect(screen.getByText("1 items left")).toBeInTheDocument();
+    expect(screen.getByText("0 items left")).toBeInTheDocument();
 
     fireEvent.click(activeBtn);
 
@@ -64,22 +64,20 @@ describe("TodoList main functionality", () => {
 
     fireEvent.click(allBtn);
 
-    expect(screen.getByText("3 items left")).toBeInTheDocument();
+    expect(screen.getByText("2 items left")).toBeInTheDocument();
   })
 
   it("should remove all completed tasks after clicking 'Clear completed'", () => {
-    expect(screen.getByText("3 items left")).toBeInTheDocument();
+    const tasks = screen.getAllByTestId("list-item");
+
+    expect(tasks).toHaveLength(3);
 
     const actionBtn = screen.getByText("Clear completed");
 
     fireEvent.click(actionBtn);
 
-    expect(screen.getByText("2 items left")).toBeInTheDocument();
+    const activeTasks = screen.getAllByTestId("list-item");
 
-    const btn = screen.getByText("Completed");
-
-    fireEvent.click(btn);
-
-    expect(screen.getByText("0 items left")).toBeInTheDocument();
+    expect(activeTasks).toHaveLength(2);
   })
 })
